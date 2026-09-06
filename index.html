@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+
+    background:
+        radial-gradient(circle at top, #ffffff 0%, transparent 35%),
+        linear-gradient(135deg, #ffd6ec, #c9c6ff, #d9b3ff);
+}
+
+/* Main content */
+.container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    padding: 40px 15px 80px;
+}
+
+/* Heading */
+h1 {
+    color: white;
+    font-size: 38px;
+    text-shadow: 0 0 15px #ff4fa3;
+}
+
+/* Gift */
+.gift {
+    font-size: 90px;
+    cursor: pointer;
+    animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Opening animation */
+.opening {
+    animation: openGift 0.8s forwards;
+}
+
+@keyframes openGift {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4) rotate(10deg);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* Wish section */
+#wish {
+    display: none;
+    padding: 30px 10px 80px;
+}
+
+/* Message card */
+.message {
+    position: relative;
+    z-index: 20;
+
+    max-width: 530px;
+    margin: 30px auto;
+    padding: 45px 25px;
+
+    background: rgba(255,255,255,0.92);
+    border-radius: 35px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.15),
+        0 0 30px rgba(255,255,255,0.6);
+
+    font-size: 23px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Special button */
+.specialButton {
+    position: relative;
+    z-index: 30;
+
+    border: none;
+    padding: 18px 40px;
+
+    border-radius: 50px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    color: white;
+
+    background: linear-gradient(135deg, #ff4fa3, #9b5cff);
+
+    box-shadow: 0 10px 25px rgba(150,70,200,0.3);
+
+    cursor: pointer;
+}
+
+/* Special message */
+#specialMessage {
+    display: none;
+}
+
+/* I Love You */
+.love {
+    font-size: 32px !important;
+    font-weight: bold;
+
+    color: #ff4fa3 !important;
+
+    text-shadow:
+        0 0 10px #ffb6d9,
+        0 0 20px #ff8fc4;
+
+    animation: loveGlow 1.5s infinite alternate;
+}
+
+@keyframes loveGlow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    top: -40px;
+
+    z-index: 2;              /* IMPORTANT: content ke peeche */
+    pointer-events: none;
+
+    font-size: 32px;
+
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-50px) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    bottom: -40px;
+
+    z-index: 3;              /* content ke peeche */
+    pointer-events: none;
+
+    font-size: 25px;
+
+    animation: floatHeart 6s linear forwards;
+}
+
+@keyframes floatHeart {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* Sparkles */
+.sparkle {
+    position: fixed;
+
+    z-index: 3;
+    pointer-events: none;
+
+    font-size: 20px;
+
+    animation: sparkleMove 4s linear forwards;
+}
+
+@keyframes sparkleMove {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎂 Happy Birthday 🎂</h1>
+
+    <div id="gift" class="gift" onclick="openGift()">
+        🎁
+    </div>
+
+    <p style="color:white; font-size:20px;">
+        Tap the gift! 🎁
+    </p>
+
+
+    <div id="wish">
+
+        <h1>
+            🎉 Happy Birthday Nishu 🎉
+        </h1>
+
+        <p style="color:white; font-size:22px;">
+            Wishing you lots of happiness and beautiful moments. ✨
+        </p>
+
+        <div class="message">
+
+            <p>
+                I hope your birthday brings you lots of happiness
+                and beautiful moments. ✨
+            </p>
+
+            <p>
+                May you always keep smiling and achieve everything
+                you wish for. 💐
+            </p>
+
+            <p>
+                Once again, Happy Birthday Nishu! 🎂🎊
+            </p>
+
+        </div>
+
+
+        <button class="specialButton"
+                onclick="showSpecialMessage()">
+
+            💌 Open Special Message
+
+        </button>
+
+
+        <div id="specialMessage" class="message">
+
+            <p>
+                ✨ A little birthday wish just for you ✨
+            </p>
+
+            <p>
+                May this new year of your life bring you
+                happiness, success and countless beautiful memories. 🌸
+            </p>
+
+            <p>
+                Keep smiling and keep shining. 💫
+            </p>
+
+            <p class="love">
+                ❤️ I Love You ❤️
+            </p>
+
+            <p>
+                🎂 Happy Birthday! 🎉
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<audio id="birthdayMusic"
+       src="birthday.mp3"
+       loop>
+</audio>
+
+
+<script>
+
+function openGift() {
+
+    let gift = document.getElementById("gift");
+
+    gift.classList.add("opening");
+
+    document.getElementById("wish").style.display = "block";
+
+    let music = document.getElementById("birthdayMusic");
+
+    music.play().catch(function() {});
+
+    createConfetti();
+    createHearts();
+    createSparkles();
+}
+
+
+function showSpecialMessage() {
+
+    document.getElementById("specialMessage").style.display = "block";
+
+    createConfetti();
+    createHearts();
+}
+
+
+function createConfetti() {
+
+    for (let i = 0; i < 35; i++) {
+
+        let confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.innerHTML = "🎊";
+
+        confetti.style.left = Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        confetti.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(function() {
+            confetti.remove();
+        }, 8000);
+    }
+}
+
+
+function createHearts() {
+
+    for (let i = 0; i < 15; i++) {
+
+        let heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(function() {
+            heart.remove();
+        }, 8000);
+    }
+}
+
+
+function createSparkles() {
+
+    for (let i = 0; i < 15; i++) {
+
+        let sparkle = document.createElement("div");
+
+        sparkle.className = "sparkle";
+
+        sparkle.innerHTML = "✨";
+
+        sparkle.style.left = Math.random() * 100 + "vw";
+
+        sparkle.style.top = (60 + Math.random() * 40) + "vh";
+
+        sparkle.style.animationDuration =
+            (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(function() {
+            sparkle.remove();
+        }, 7000);
+    }
+}
+
+</script>
+
+</body>
+</html>
